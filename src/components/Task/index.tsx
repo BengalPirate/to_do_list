@@ -27,7 +27,10 @@ export function Task({ task, onComplete, onDelete, onUpdate }: TaskProps) {
 
   return (
     <div className={styles.task}>
-      <button className={styles.checkContainer} onClick={() => onComplete(task.id)}>
+      <button 
+        aria-label="complete task"
+        className={styles.checkContainer} 
+        onClick={() => onComplete(task.id)}>
         {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
       </button>
 
@@ -45,10 +48,16 @@ export function Task({ task, onComplete, onDelete, onUpdate }: TaskProps) {
         <p className={task.isCompleted ? styles.textCompleted : ''}>{task.title}</p>
       )}
       
-      <button className={styles.editButton} onClick={() => setIsEditing(true)}>
+      <button 
+        aria-label="edit task"
+        className={styles.editButton} 
+        onClick={() => setIsEditing(true)}>
         <TbEdit size={20} />
       </button>
-      <button className={styles.deleteButton} onClick={() => onDelete(task.id)}>
+      <button 
+        aria-label="delete task"
+        className={styles.deleteButton} 
+        onClick={() => onDelete(task.id)}>
         <TbTrash size={20} />
       </button>
     </div>
