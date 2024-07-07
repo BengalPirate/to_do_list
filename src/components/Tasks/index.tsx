@@ -6,9 +6,10 @@ interface TasksProps {
   tasks: TaskType[];
   onComplete: (taskId: string) => void;
   onDelete: (taskId: string) => void;
+  onUpdate: (taskId: string, newTitle: string) => void; // Add onUpdate prop
 }
 
-export function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
+export function Tasks({ tasks, onComplete, onDelete, onUpdate }: TasksProps) {
   const tasksQuantity = tasks.length;
   const completedTasks = tasks.filter(task => task.isCompleted).length;
 
@@ -27,7 +28,13 @@ export function Tasks({ tasks, onComplete, onDelete }: TasksProps) {
       </header>
       <div className={styles.list}>
         {tasks.map(task => (
-          <Task key={task.id} task={task} onComplete={onComplete} onDelete={onDelete} />
+          <Task 
+            key={task.id} 
+            task={task} 
+            onComplete={onComplete} 
+            onDelete={onDelete} 
+            onUpdate={onUpdate} // Pass onUpdate prop
+          />
         ))}
       </div>
     </section>

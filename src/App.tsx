@@ -58,6 +58,19 @@ function App() {
     setTasksAndSave(newTasks);
   }
 
+  function updateTaskById(taskId: string, newTitle: string) {
+    const newTasks = tasks.map(task => {
+      if(task.id === taskId) {
+        return {
+          ...task,
+          title: newTitle
+        };
+      }
+      return task;
+    });
+    setTasksAndSave(newTasks);
+  }
+
   return (
     <>
       <Header onAddTask={addTask} />
@@ -65,6 +78,7 @@ function App() {
         tasks={tasks} 
         onDelete={deleteTaskById}
         onComplete={toggleTaskCompletedById}
+        onUpdate={updateTaskById} // Pass onUpdate prop
       />
     </>
   );
