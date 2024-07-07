@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgresuser
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: tododb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build: .
+    environment:
+      DB_USER: postgresuser
+      DB_HOST: db
+      DB_NAME: tododb
+      DB_PASSWORD: postgrespassword
+      DB_PORT: 5432
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+volumes:
+  postgres-data:
