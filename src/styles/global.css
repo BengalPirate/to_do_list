@@ -9,8 +9,14 @@ body {
   background: #191919;
   color: #F2F2F2;
   min-height: 100vh;
+  overflow: hidden; /* Prevents scrollbars that might interfere with the canvas */
 }
 
 button {
   cursor: pointer;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
